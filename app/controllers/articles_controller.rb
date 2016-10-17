@@ -1,5 +1,6 @@
 class ArticlesController < ApplicationController
 	include ArticlesHelper
+	before_filter :require_login, except: [:index, :show]
 
 	def index
 		@articles = Article.all
@@ -10,6 +11,7 @@ class ArticlesController < ApplicationController
 		@comment = Comment.new
 		@comment.article_id = @article_id
 	end
+
 
 	def new
 		@article = Article.new
